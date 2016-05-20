@@ -1,16 +1,86 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <link href="//fonts.googleapis.com/css?family=Acme&subset=latin" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .overlay {
+      background-color: rgba(0,0,0,.7);
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      -webkit-backdrop-filter: blur(2px);
+    }
+    .solo {
+      background-color: white;
+      position: fixed;
+      width: 50vw;
+      height: 50vh;
+      border-radius: 20px;
+      left: calc(50% - 25vw);
+      top: calc(50% - 25vh);
+    }
 
+    input {
+      height: 30px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      padding-left: 10px;
+      width: 20vw;
+      display: block;
+      margin: 30px 0;
+
+    }input[type="submit"]{
+      background-color: #077174;
+      color: white;
+      width: calc(20vw + 14px);
+      padding: 0;
+      height: 40px;
+    }
+    .form-wrapper {
+      top: 37vh;
+      left: calc(50% - 10vw);
+      position: fixed;
+    }
+    .solo > div:first-child{
+      border-bottom: 1px solid lightgrey;
+      width: 100%;
+      height: 50px;
+    }
+    .solo > div:first-child > p {
+      font-family: 'Acme', sans-serif;
+      color: lightgrey;
+      padding-right: 20px;
+      padding-bottom: 10px;
+
+      text-align: right;
+      cursor: pointer;
+    }.login_error {
+      color: lightgrey;
+      position: fixed;
+      left: calc(50vw - 105px);
+      top: 25.3vh;
+    }
+  </style>
   </head>
   <body>
-    <form method="post">
-      <p>Login:</p>
-      <input type="text" name="username" placeholder="Username/Email" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <input type="submit" value="Submit">
-    </form>
+    <div class="overlay">
+      <div class="solo">
+        <div><p onclick="overlay_close()">X</p></div>
+
+        <div class="form-wrapper">
+          <form method="post">
+
+            <input type="text" name="username" placeholder="Username/Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Log In">
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 
@@ -37,6 +107,7 @@ if (isset($_POST['username'])) {
 
     $sql = "SELECT * FROM users WHERE username = '$username'  AND password = '$password'";
     $result = mysqli_query($connect, $sql);
+
 
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
@@ -66,7 +137,8 @@ if (isset($_POST['username'])) {
 
     }else {
         echo "<script>console.log('user.php -> check -> ERROR')</script>";
-        echo "Wrong username or password.";
+        //echo '<script>alert()</script>';
+        echo '<p class="login_error">Wrong username or password.</p>';
     }
 
 

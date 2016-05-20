@@ -1,5 +1,8 @@
+<?php
+include("navbar.php");
+?>
 <!DOCTYPE html>
-<html>
+<html class="user-php">
   <head>
     <meta charset="utf-8">
     <title><?php echo $user."'s Profile"?></title>
@@ -8,10 +11,16 @@
     <script src="init/logout.js"></script>
     <script src="init/validate.js"></script>
     <script src="init/edit_profile.js"></script>
+
+    <style>
+      .user-php p {
+        color: black;
+}
+    </style>
   </head>
 
       <?php
-      
+
       function edit_profilee(){
         echo 'hwll';
       }
@@ -33,14 +42,7 @@
           echo "<p>You are currently on <b>".$user."</b>'s profile page</p>";
       }
 
-      if ($_COOKIE["session"] != "true") {
-        echo '<p><a href = "/register.php">Register</a></p>';
-              include('login.php');
-
-
-      } else {
-        echo 'You are currently logged in as '.$_COOKIE["user_c"];
-        echo '<p><a href="/"onclick="logout()">Logout</a></p>';
+      if ($_COOKIE["session"] == "true") {
         echo '<script>
                       if(validate_profile("'.$_COOKIE["user_c"].'")){
                         document.write("<a href=\"/'.$_COOKIE["user_c"].'&edit=true\">Edit Profile</a>")
@@ -62,10 +64,6 @@
 
 
   <body id="body">
-    <?php
 
-
-    ?>
-    <p><a href="/">Home</a></p>
   </body>
 </html>
