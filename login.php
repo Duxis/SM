@@ -2,11 +2,8 @@
 <html>
   <head>
     <link href="//fonts.googleapis.com/css?family=Acme&subset=latin" rel="stylesheet" type="text/css">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
+    <link href="init/form.css" rel="stylesheet" type="text/css">
+    <style>
     .overlay {
       background-color: rgba(0,0,0,.7);
       width: 100vw;
@@ -23,23 +20,6 @@
       left: calc(50% - 25vw);
       top: calc(50% - 25vh);
     }
-
-    input {
-      height: 30px;
-      border: 1px solid lightgray;
-      border-radius: 5px;
-      padding-left: 10px;
-      width: 20vw;
-      display: block;
-      margin: 30px 0;
-
-    }input[type="submit"]{
-      background-color: #077174;
-      color: white;
-      width: calc(20vw + 14px);
-      padding: 0;
-      height: 40px;
-    }
     .form-wrapper {
       top: 37vh;
       left: calc(50% - 10vw);
@@ -52,19 +32,21 @@
     }
     .solo > div:first-child > p {
       font-family: 'Acme', sans-serif;
-      color: lightgrey;
+      color: grey;
       padding-right: 20px;
       padding-bottom: 10px;
 
       text-align: right;
       cursor: pointer;
     }.login_error {
-      color: lightgrey;
+      color: red;
+      font-size: .8em;
       position: fixed;
-      left: calc(50vw - 105px);
-      top: 25.3vh;
+      left: 40vw;
+      top: 35vh;
     }
-  </style>
+
+    </style>
   </head>
   <body>
     <div class="overlay">
@@ -112,7 +94,7 @@ if (isset($_POST['username'])) {
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
         echo "<script>console.log('user.php -> check -> DONE')</script>";
-        echo "user found";
+
 
 
         //create cookie for session
@@ -131,6 +113,7 @@ if (isset($_POST['username'])) {
                       }else {
                         window.location.href = window.location;
                       }
+                      document.cookie = "popup=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
               </script>';
 
 

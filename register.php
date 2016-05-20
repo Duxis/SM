@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Register</title>
-  </head>
-  <body>
-    <form method="post">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <input type="submit" value="Submit">
-    </form>
-    <p><a href="/">Home</a></p>
-  </body>
-</html>
+
 
 <?php
-
+include("navbar-clear.php");
 if (isset($_POST['username'])) {
 
   //echo "yo!";
@@ -28,9 +13,9 @@ if (isset($_POST['username'])) {
   $email =  $_POST['email'];
   //echo strlen($password);
   $error = false;
-  if (strlen($password) < 8) {
-    $error = false;
-    echo "Password must be at least 8 characters.";
+  if (strlen($password) < 6) {
+    $error = true;
+    echo '<p class = "signup-error">Password must be at least 6 characters.</p>';
   }
 
 
@@ -68,7 +53,9 @@ if (isset($_POST['username'])) {
           }
     } else {
         echo "<script>console.log('user.php -> check -> DONE')</script>";
-        echo "Username or email already exsists.";
+        if ($error == false){
+          echo '<p class = "signup-error">Username or email already exsists.</p>';
+        }
     }
 
 
@@ -79,3 +66,41 @@ if (isset($_POST['username'])) {
     mysql_close();
   }
 ?>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sniddle | Register</title>
+    <link href="init/form.css" rel="stylesheet" type="text/css">
+
+    <style>
+      .reg-wrapper {
+        width: auto;
+        position: absolute;
+        left: 40vw;
+        /* each input total height is 90px submit is 100px*/
+        top:calc(50vh - (90px * 4 + 10px)/2);
+      }
+      .signup-error {
+        color: red;
+        font-size: .8em;
+        position: absolute;
+        /*same as reg-wrapper - 15px*/
+        top: calc(50vh - (90px * 4 + 10px)/2 - 15px);
+        left: 40vw;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class = "reg-wrapper">
+      <form method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>

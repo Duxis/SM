@@ -1,11 +1,13 @@
 <?php
 include("navbar.php");
+$user = $_REQUEST['user'];
+$edit = $_REQUEST['edit'];
 ?>
 <!DOCTYPE html>
 <html class="user-php">
   <head>
     <meta charset="utf-8">
-    <title><?php echo $user."'s Profile"?></title>
+    <title><?php echo "Sniddle | ".$user?></title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="init/logout.js"></script>
@@ -24,8 +26,7 @@ include("navbar.php");
       function edit_profilee(){
         echo 'hwll';
       }
-      $user = $_REQUEST['user'];
-      $edit = $_REQUEST['edit'];
+
 
       include('init/dbconnection.php');
 

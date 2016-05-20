@@ -2,8 +2,6 @@
 <!DOCTYPE html>
 <html class = "navbar-php">
   <head>
-    <meta charset="utf-8">
-    <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
     <script src="init/navbar.js"></script>
@@ -39,7 +37,9 @@
         font-family: 'Delius Swash Caps', sans-serif;
         letter-spacing: 1px;
         padding-left: 40px;
-
+      }h1 a{
+        text-decoration: none;
+        font-family: inherit;
       }
       button {
        font-family: 'Actor', sans-serif;
@@ -59,7 +59,7 @@
   </head>
   <body>
     <div class="nav_div">
-      <h1>Sniddl</h1>
+      <h1><a href="/">Sniddl</a></h1>
       <?php
 
 
